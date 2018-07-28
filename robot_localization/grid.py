@@ -1,4 +1,3 @@
-from functools import reduce
 from cell import Cell
 
 class Grid:
@@ -30,4 +29,3 @@ class Grid:
         
         for cell in self.cells:
             cell.probability /= total
-        
