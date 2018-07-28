@@ -1,3 +1,4 @@
+from functools import reduce
 from cell import Cell
 
 class Grid:
@@ -10,14 +11,23 @@ class Grid:
             new_cell = Cell(i, base_probability)
             self.cells.append(new_cell)
     
-    def set_colors_for_cells(self, cell_colors):
+    def set_colors(self, cell_colors):
         for i, cell in enumerate(self.cells):
             cell.color = cell_colors[i]
             
-    def all_cells_state_for_attr(self, attribute):
-        all_probabilities = []
-        for cell in self.cells:
-            all_probabilities.append(getattr(cell, attribute))
+    def get_state(self, attribute):
+        return [getattr(cell, attribute) for cell in self.cells]
         
-        return all_probabilities
+    def evaluate_posterior_probabilities(self, sensor_reading, constants):
+        for cell in self.cells:
+            if cell.color == sensor_reading:
+                cell.probability *= constants["pHit"] 
+            else:
+                cell.probability *= constants["pMiss"]
+                
+    def normalize_probabilities(self):
+        total = sum(self.get_state("probability"))
+        
+        for cell in self.cells:
+            cell.probability /= total
         
