@@ -29,3 +29,6 @@ class Grid:
         
         for cell in self.cells:
             cell.probability /= total
+    
+    def set_state(self, attribute, values):
+        [setattr(cell, attribute, values[i]) for i, cell in enumerate(self.cells)]
