@@ -32,5 +32,4 @@ print robot.sense(grid, ["red", "green"])
 
 move_grid = Grid(5)
 move_grid.set_state("probability", [0, 0.5, 0, 0.5, 0])
-robot.move(move_grid, 2)
-print move_grid.get_state("probability")
+print robot.move(move_grid, 2)

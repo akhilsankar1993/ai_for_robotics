@@ -43,5 +43,9 @@ class Robot:
             
             compiled_distribution = [x+y for x,y in zip(compiled_distribution, specific_cell_distribution)]
         
-        return grid.set_state("probability", compiled_distribution)
+        grid.set_state("probability", compiled_distribution)
+        
+        return grid.get_state("probability")
+        
+        
         
